@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        body { font-family: sans-serif; padding: 30px; background-color: #f4f4f4; }
+        .panel { background: white; padding: 20px; border-radius: 8px; max-width: 600px; margin: 0 auto; }
+        .btn { display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px;}
+        .logout { color: red; float: right; }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <a href="/logout" class="logout">Cerrar Sesión</a>
+        <h2>Panel de Control</h2>
+        <p>Bienvenido, <strong>{{ current_user.username }}</strong> ({{ current_user.role }})</p>
+        <hr>
+        
+        {% if current_user.role == 'teacher' %}
+            <h3>Acciones de Profesor:</h3>
+            <a href="/agregar_nota" class="btn">➕ Agregar Nueva Calificación</a>
+        {% endif %}
+
+        <h3>Acciones Generales:</h3>
+        <a href="/ver_notas" class="btn">📋 Ver Mis Calificaciones</a>
+    </div>
+</body>
+</html>

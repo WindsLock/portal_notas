@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Notas</title>
+    <style>
+        body { font-family: sans-serif; padding: 30px; max-width: 800px; margin: 0 auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        .comentario { font-style: italic; color: #555; }
+    </style>
+</head>
+<body>
+    <h1>Boletín de Notas</h1>
+    {% if alumno %}
+        <p>Estudiante: <strong>{{ alumno.username }}</strong> (ID: {{ alumno.id }})</p>
+    {% endif %}
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Materia</th>
+                <th>Calificación</th>
+                <th>Comentarios del Profesor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nota in notas %}
+            <tr>
+                <td>{{ nota.materia }}</td>
+                <td>{{ nota.nota }}</td>
+                <td>
+                    <span class="comentario">{{ nota.comentario | safe }}</span>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">No hay notas registradas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="/dashboard">Volver</a>
+</body>
+</html>

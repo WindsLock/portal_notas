@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal de Notas</title>
+    <style>
+        body { font-family: sans-serif; padding: 50px; text-align: center; background-color: #f4f4f4; }
+        .container { background: white; padding: 20px; border-radius: 8px; }
+        a { text-decoration: none; color: #007bff; margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido al Portal Académico</h1>
+        <p>Sistema de gestión de calificaciones.</p>
+        <hr>
+        
+        {% if current_user.is_authenticated %}
+            <p>Hola, <strong>{{ current_user.username }}</strong></p>
+            <a href="/dashboard">Ir al Panel</a> | 
+            <a href="/logout">Cerrar Sesión</a>
+        {% else %}
+            <a href="/login">Iniciar Sesión</a>
+        {% endif %}
+        
+    </div>
+</body>
+</html>

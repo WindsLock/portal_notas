@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Nota</title>
+    <style>
+        body { font-family: sans-serif; padding: 30px; text-align: center; }
+        form { display: inline-block; border: 1px solid #ccc; padding: 20px; border-radius: 10px; max-width: 400px;}
+        input, textarea { display: block; margin: 10px auto; padding: 5px; width: 90%; }
+        button { margin-top: 10px; padding: 10px 20px; cursor: pointer; }
+        .flash { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Calificar Alumno</h1>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash">{{ messages[0] }}</div>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <label>Usuario del Estudiante:</label>
+        <input type="text" name="student_username" placeholder="ej: pepe" required>
+        
+        <label>Materia:</label>
+        <input type="text" name="materia" placeholder="ej: Matemáticas" required>
+        
+        <label>Nota (0-100):</label>
+        <input type="number" name="nota" required>
+        
+        <label>Comentario (Opcional):</label>
+        <textarea name="comentario" placeholder="Escribe una observación..."></textarea>
+        
+        <button type="submit">Guardar Nota</button>
+    </form>
+    <br>
+    <a href="/dashboard">Volver al Panel</a>
+</body>
+</html>
